@@ -1,0 +1,195 @@
+name: Privacy Guard (External Requests)
+
+on:
+  pull_request:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Enable pnpm (Corepack)
+        run: corepack enable
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Privacy scan (source)
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Scan only your source assets (avoid node_modules, dist)
+          FILES="$(git ls-files 'src/**' 'public/**' | grep -E '\.(astro|html|css|js|ts|tsx|jsx)$' || true)"
+          if [[ -z "${FILES}" ]]; then
+            echo "No matching source files found in src/public."
+            exit 0
+          fi
+
+          # 1) Hard blocklist (typische Abmahn-/Tracking-Fallen)
+          BLOCK_DOMAINS=(
+            'fonts\.googleapis\.com'
+            'fonts\.gstatic\.com'
+            'googletagmanager\.com'
+            'google-analytics\.com'
+            'analytics\.google\.com'
+            'connect\.facebook\.net'
+            'static\.hotjar\.com'
+            'cdn\.mouseflow\.com'
+            'cdn\.cookiebot\.com'
+            'platform\.twitter\.com'
+          )
+
+          echo "== Hard block scan =="
+          for rx in "${BLOCK_DOMAINS[@]}"; do
+            if echo "${FILES}" | xargs -r grep -nIE "$rx" >/dev/null; then
+              echo "::error::Blocked privacy domain detected: $rx"
+              echo "${FILES}" | xargs -r grep -nIE "$rx" | head -n 200
+              exit 1
+            fi
+          done
+
+          # 2) External resource loads (browser will connect without user click)
+          #    -> allowlist is optional. Add hosts you deliberately accept.
+          ALLOW_HOSTS=(
+            # Example: allow GitHub API if you intentionally do client-side live data:
+            # "api.github.com"
+          )
+
+          # Patterns that imply an automatic network request (not simple <a href>)
+          LOAD_PATTERNS=(
+            '@import\s+url\(["'\'']https?://'
+            '<link[^>]+rel=["'\'']stylesheet["'\''][^>]+href=["'\'']https?://'
+            '<link[^>]+rel=["'\'']preconnect["'\''][^>]+href=["'\'']https?://'
+            '<link[^>]+rel=["'\'']dns-prefetch["'\''][^>]+href=["'\'']https?://'
+            '<script[^>]+src=["'\'']https?://'
+            '<iframe[^>]+src=["'\'']https?://'
+            'fetch\(["'\'']https?://'
+            'XMLHttpRequest\('
+            'new\s+WebSocket\(["'\'']wss?://'
+            'navigator\.sendBeacon\(["'\'']https?://'
+          )
+
+          echo "== External load scan (source) =="
+          MATCHES="$(echo "${FILES}" | xargs -r grep -nIE "$(IFS='|'; echo "${LOAD_PATTERNS[*]}")" || true)"
+          if [[ -n "${MATCHES}" ]]; then
+            echo "::warning::Found potential external loads in source. Evaluating allowlist..."
+            echo "${MATCHES}" | head -n 200
+
+            # Extract hosts from matching lines (best-effort)
+            URLS="$(echo "${MATCHES}" | grep -oE '(https?|wss?)://[^"'\'' )]+' || true)"
+            HOSTS="$(echo "${URLS}" | sed -E 's#^(https?|wss?)://##' | cut -d/ -f1 | sed 's/[:].*$//' | sort -u || true)"
+
+            if [[ -n "${HOSTS}" ]]; then
+              echo "Detected hosts:"
+              echo "${HOSTS}"
+
+              # Fail if host not in allowlist
+              for h in ${HOSTS}; do
+                allowed="false"
+                for a in "${ALLOW_HOSTS[@]}"; do
+                  if [[ "${h}" == "${a}" ]]; then allowed="true"; fi
+                done
+                if [[ "${allowed}" != "true" ]]; then
+                  echo "::error::External host '${h}' causes automatic requests. Add to ALLOW_HOSTS only if intentional."
+                  exit 1
+                fi
+              done
+            else
+              echo "::error::External load pattern matched but no URL host could be extracted. Please review the matches."
+              exit 1
+            fi
+          fi
+
+      - name: Build
+        run: pnpm build
+
+      - name: Privacy scan (dist)
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ ! -d "dist" ]]; then
+            echo "::error::dist folder not found. Check Astro output config."
+            exit 1
+          fi
+
+          # Same hard blocklist
+          BLOCK_DOMAINS=(
+            'fonts\.googleapis\.com'
+            'fonts\.gstatic\.com'
+            'googletagmanager\.com'
+            'google-analytics\.com'
+            'analytics\.google\.com'
+            'connect\.facebook\.net'
+            'static\.hotjar\.com'
+            'cdn\.mouseflow\.com'
+            'cdn\.cookiebot\.com'
+            'platform\.twitter\.com'
+          )
+
+          echo "== Hard block scan (dist) =="
+          for rx in "${BLOCK_DOMAINS[@]}"; do
+            if grep -RInE "$rx" dist >/dev/null; then
+              echo "::error::Blocked privacy domain detected in dist: $rx"
+              grep -RInE "$rx" dist | head -n 200
+              exit 1
+            fi
+          done
+
+          # External auto-loads in dist (scripts/styles/iframes/fetch)
+          ALLOW_HOSTS=(
+            # "api.github.com"
+          )
+
+          LOAD_PATTERNS=(
+            '@import\s+url\(["'\'']https?://'
+            '<link[^>]+rel=["'\'']stylesheet["'\''][^>]+href=["'\'']https?://'
+            '<link[^>]+rel=["'\'']preconnect["'\''][^>]+href=["'\'']https?://'
+            '<link[^>]+rel=["'\'']dns-prefetch["'\''][^>]+href=["'\'']https?://'
+            '<script[^>]+src=["'\'']https?://'
+            '<iframe[^>]+src=["'\'']https?://'
+            'fetch\(["'\'']https?://'
+            'new\s+WebSocket\(["'\'']wss?://'
+            'navigator\.sendBeacon\(["'\'']https?://'
+          )
+
+          echo "== External load scan (dist) =="
+          MATCHES="$(grep -RInE "$(IFS='|'; echo "${LOAD_PATTERNS[*]}")" dist || true)"
+          if [[ -n "${MATCHES}" ]]; then
+            echo "::warning::Found potential external loads in dist. Evaluating allowlist..."
+            echo "${MATCHES}" | head -n 200
+
+            URLS="$(echo "${MATCHES}" | grep -oE '(https?|wss?)://[^"'\'' )]+' || true)"
+            HOSTS="$(echo "${URLS}" | sed -E 's#^(https?|wss?)://##' | cut -d/ -f1 | sed 's/[:].*$//' | sort -u || true)"
+
+            if [[ -n "${HOSTS}" ]]; then
+              echo "Detected hosts:"
+              echo "${HOSTS}"
+
+              for h in ${HOSTS}; do
+                allowed="false"
+                for a in "${ALLOW_HOSTS[@]}"; do
+                  if [[ "${h}" == "${a}" ]]; then allowed="true"; fi
+                done
+                if [[ "${allowed}" != "true" ]]; then
+                  echo "::error::External host '${h}' causes automatic requests (dist). Add to ALLOW_HOSTS only if intentional."
+                  exit 1
+                fi
+              done
+            else
+              echo "::error::External load pattern matched but no URL host could be extracted. Please review the matches."
+              exit 1
+            fi
+          fi
