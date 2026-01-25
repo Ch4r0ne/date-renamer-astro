@@ -107,25 +107,7 @@ export default function PrivacyPolicyPage() {
 
               <section className="space-y-3">
                 <h2 className="font-heading text-foreground text-xl font-bold">
-                  5. GitHub Live-Daten (nur relevant, wenn clientseitig geladen)
-                </h2>
-                <p className="text-muted-foreground">
-                  Sofern auf der Website Projekt-Live-Daten (z. B. Stars/Release-Infos/Status)
-                  clientseitig von GitHub geladen werden, kann dabei u. a. die IP-Adresse an GitHub
-                  übermittelt werden.
-                </p>
-                <p className="text-muted-foreground">
-                  Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an aktueller
-                  Projektdarstellung).
-                  <br />
-                  Hinweis: Wenn Live-Daten build-time geholt und statisch ausgeliefert werden, kann
-                  dieser Abschnitt entfallen.
-                </p>
-              </section>
-
-              <section className="space-y-3">
-                <h2 className="font-heading text-foreground text-xl font-bold">
-                  6. Lokale Speicherung (localStorage) – nur falls genutzt
+                  5. Lokale Speicherung
                 </h2>
                 <p className="text-muted-foreground">
                   Soweit diese Website Funktionen nutzt, die Daten lokal im Browser speichern (z. B.
@@ -141,7 +123,7 @@ export default function PrivacyPolicyPage() {
 
               <section className="space-y-3">
                 <h2 className="font-heading text-foreground text-xl font-bold">
-                  7. Cookies / Endgerätezugriffe
+                  6. Cookies / Endgerätezugriffe
                 </h2>
                 <p className="text-muted-foreground">
                   Diese Website setzt nach aktuellem Stand keine Analyse- oder Marketing-Cookies
@@ -152,7 +134,7 @@ export default function PrivacyPolicyPage() {
 
               <section className="space-y-3">
                 <h2 className="font-heading text-foreground text-xl font-bold">
-                  8. Rechte der betroffenen Personen
+                  7. Rechte der betroffenen Personen
                 </h2>
                 <p className="text-muted-foreground">
                   Du hast das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16), Löschung
