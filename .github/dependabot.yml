@@ -1,0 +1,94 @@
+version: 2
+
+updates:
+  # Node dependencies (pnpm via npm ecosystem; lockfile is pnpm-lock.yaml in repo root)
+  - package-ecosystem: "npm"
+    directory: "/"
+    target-branch: "main"
+
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "08:15"
+      timezone: "Europe/Berlin"
+
+    open-pull-requests-limit: 5
+    rebase-strategy: "auto"
+
+    labels:
+      - "dependencies"
+
+    assignees:
+      - "Ch4r0ne"
+
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+
+    groups:
+      astro:
+        patterns:
+          - "astro"
+          - "@astrojs/*"
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react*"
+          - "@types/react-dom"
+      ui:
+        patterns:
+          - "framer-motion"
+          - "lucide-react"
+          - "clsx"
+          - "tailwind-merge"
+      tooling:
+        patterns:
+          - "typescript"
+          - "@types/node"
+          - "prettier"
+          - "prettier-plugin-*"
+          - "tailwindcss"
+          - "@tailwindcss/*"
+
+    ignore:
+      # keep majors manual for stability
+      - dependency-name: "astro"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "tailwindcss"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+
+  # GitHub Actions (your workflows live under .github/workflows)
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    target-branch: "main"
+
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "08:25"
+      timezone: "Europe/Berlin"
+
+    open-pull-requests-limit: 2
+    rebase-strategy: "auto"
+
+    labels:
+      - "dependencies"
+
+    assignees:
+      - "Ch4r0ne"
+
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+
+    groups:
+      actions:
+        patterns:
+          - "*"
