@@ -31,21 +31,6 @@ const LICENSE_URL =
 const DOCS_URL = 'https://github.com/Ch4r0ne/date-renamer#readme';
 const PUBLISHER_URL = 'https://github.com/Ch4r0ne';
 
-type GithubStats = {
-  repo: { stars: number; forks: number; openIssues: number; updatedAt: string } | null;
-  release: { name: string; tag: string; publishedAt: string; downloads: number } | null;
-  error: boolean;
-};
-
-const formatNumber = (value: number) => value.toLocaleString('de-DE');
-
-const formatDate = (value: string) =>
-  new Date(value).toLocaleDateString('de-DE', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric',
-  });
-
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -58,7 +43,6 @@ const Navigation = () => {
         'problem',
         'how-it-works',
         'features',
-        'screenshots',
         'use-cases',
         'download',
         'open-source',
@@ -86,7 +70,6 @@ const Navigation = () => {
     { href: '#problem', label: 'Problem', id: 'problem' },
     { href: '#how-it-works', label: 'How it works', id: 'how-it-works' },
     { href: '#features', label: 'Features', id: 'features' },
-    { href: '#screenshots', label: 'Screens', id: 'screenshots' },
     { href: '#use-cases', label: 'Use cases', id: 'use-cases' },
     { href: '#download', label: 'Download', id: 'download' },
   ];
@@ -217,11 +200,7 @@ const Navigation = () => {
   );
 };
 
-const Hero = ({ github }: { github: GithubStats }) => {
-  const repo = github.repo;
-  const release = github.release;
-  const hasError = github.error;
-
+const Hero = () => {
   return (
     <section
       id="home"
@@ -351,22 +330,13 @@ const Hero = ({ github }: { github: GithubStats }) => {
             className="bg-card absolute -bottom-8 -left-4 flex max-w-[220px] items-center gap-3 rounded-2xl p-4 shadow-lg md:left-10"
           >
             <div className="rounded-full bg-green-100 p-2 text-green-600">
-              <Github size={20} />
+              <ShieldCheck size={20} />
             </div>
             <div>
-              <p className="text-sm font-bold">GitHub Live-Status</p>
-              {repo ? (
-                <p className="text-muted-foreground text-xs">
-                  {formatNumber(repo.stars)} Stars · {formatNumber(repo.forks)}
-                  Forks · {formatNumber(repo.openIssues)} Issues
-                </p>
-              ) : (
-                <p className="text-muted-foreground text-xs">
-                  {hasError
-                    ? 'Live-Daten derzeit nicht verfügbar.'
-                    : 'Live-Daten werden geladen.'}
-                </p>
-              )}
+              <p className="text-sm font-bold">Audit-ready operations</p>
+              <p className="text-muted-foreground text-xs">
+                Deterministic logs, verifiable rename trails, and controlled access.
+              </p>
             </div>
           </motion.div>
 
@@ -381,19 +351,10 @@ const Hero = ({ github }: { github: GithubStats }) => {
               <Info size={20} />
             </div>
             <div>
-              <p className="text-sm font-bold">Release Snapshot</p>
-              {release ? (
-                <p className="text-muted-foreground text-xs">
-                  {release.tag} · {formatDate(release.publishedAt)} · Changelog
-                  available
-                </p>
-              ) : (
-                <p className="text-muted-foreground text-xs">
-                  {hasError
-                    ? 'Release-Daten derzeit nicht verfügbar.'
-                    : 'Release-Daten werden geladen.'}
-                </p>
-              )}
+              <p className="text-sm font-bold">Enterprise-grade delivery</p>
+              <p className="text-muted-foreground text-xs">
+                Controlled release notes, verified binaries, and documented change logs.
+              </p>
             </div>
           </motion.div>
         </motion.div>
@@ -702,60 +663,6 @@ const HowItWorks = () => {
             >
               {chip}
             </span>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const Screenshots = () => {
-  const shots = [
-    {
-      title: 'Main interface and live preview',
-      desc: 'Compare old and new names with diagnostics at a glance.',
-      image: '/images/date-renamer.png',
-    },
-    {
-      title: 'Advanced options',
-      desc: 'ExifTool mode, Deep Mode flags, and parallel scan together.',
-      image: '/images/date-renamer.png',
-    },
-    {
-      title: 'Tooltip transparency',
-      desc: 'See why each timestamp wins and stays consistent.',
-      image: '/images/date-renamer.png',
-    },
-  ];
-
-  return (
-    <section id="screenshots" className="relative bg-white/50 px-6 py-24 md:px-12 lg:px-24">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-12 space-y-4 text-center">
-          <span className="font-hand text-primary text-xl">Screenshots</span>
-          <h2 className="font-heading text-foreground text-4xl font-bold md:text-5xl">
-            See the UI before you rename
-          </h2>
-        </div>
-
-        <div className="grid gap-8 md:grid-cols-3">
-          {shots.map((shot) => (
-            <motion.div
-              key={shot.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="bg-card flex h-full flex-col overflow-hidden rounded-[2rem] shadow-lg"
-            >
-              <img src={shot.image} alt={shot.title} className="h-auto w-full" />
-              <div className="space-y-2 p-6">
-                <h3 className="font-heading text-foreground text-lg font-bold">
-                  {shot.title}
-                </h3>
-                <p className="text-muted-foreground text-sm">{shot.desc}</p>
-              </div>
-            </motion.div>
           ))}
         </div>
       </div>
@@ -1076,16 +983,15 @@ export const Footer = () => {
   );
 };
 
-export default function HomePage({ github }: { github: GithubStats }) {
+export default function HomePage() {
   return (
     <div className="bg-background selection:bg-primary/20 selection:text-primary-foreground min-h-screen">
       <Navigation />
-      <Hero github={github} />
+      <Hero />
       <Story />
       <ProblemSolution />
       <HowItWorks />
       <Features />
-      <Screenshots />
       <UseCases />
       <DownloadSection />
       <OpenSource />
