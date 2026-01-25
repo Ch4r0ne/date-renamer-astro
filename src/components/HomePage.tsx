@@ -237,10 +237,9 @@ const Hero = () => {
             </span>
           </h1>
           <p className="text-muted-foreground max-w-xl text-lg leading-relaxed md:text-xl">
-            Date Renamer Toolkit aligns photos and videos to the most reliable
-            capture time, with clear source diagnostics and a live rename
-            preview. It is built for media libraries, professional editing
-            workflows, and long term archive stability.
+            Date Renamer Toolkit aligns media to the most reliable capture time
+            with clear diagnostics and a live rename preview. Built for
+            professional libraries and long term archive stability.
           </p>
 
           <div className="flex flex-wrap gap-4 pt-4">
@@ -333,9 +332,9 @@ const Hero = () => {
               <ShieldCheck size={20} />
             </div>
             <div>
-              <p className="text-sm font-bold">Audit-ready operations</p>
+              <p className="text-sm font-bold">Audit-ready</p>
               <p className="text-muted-foreground text-xs">
-                Deterministic logs, verifiable rename trails, and controlled access.
+                Deterministic logs and verifiable rename trails.
               </p>
             </div>
           </motion.div>
@@ -351,9 +350,9 @@ const Hero = () => {
               <Info size={20} />
             </div>
             <div>
-              <p className="text-sm font-bold">Enterprise-grade delivery</p>
+              <p className="text-sm font-bold">Enterprise-grade</p>
               <p className="text-muted-foreground text-xs">
-                Controlled release notes, verified binaries, and documented change logs.
+                Verified releases with documented change logs.
               </p>
             </div>
           </motion.div>
@@ -541,27 +540,27 @@ const ProblemSolution = () => {
         <div className="mb-12 text-center">
           <span className="font-hand text-primary text-xl">Problem → Solution</span>
           <h3 className="font-heading text-foreground mt-3 text-3xl font-bold md:text-4xl">
-            Enterprise archives demand deterministic evidence
+            Deterministic evidence for enterprise archives
           </h3>
         </div>
         <div className="grid gap-6 rounded-[2rem] bg-white/80 p-8 shadow-lg md:grid-cols-3">
           {[
             {
-              title: 'Messaging exports lose traceable metadata',
+              title: 'Exports lose traceable metadata',
               detail:
-                'Policy-based fallbacks and Deep Mode reconstruction restore accountable timelines.',
+                'Fallback rules and Deep Mode rebuild accountable timelines.',
               icon: <Image className="text-primary h-6 w-6" />,
             },
             {
-              title: 'Video timestamps drift across sources',
+              title: 'Video timestamps drift',
               detail:
-                'Clear precedence rules align QuickTime, MP4, and MOV to one verified source.',
+                'Precedence rules align QuickTime, MP4, and MOV sources.',
               icon: <Video className="text-primary h-6 w-6" />,
             },
             {
-              title: 'NAS archives require audit-safe stability',
+              title: 'NAS archives need audit-safe stability',
               detail:
-                'Collision-safe, deterministic naming keeps every run reproducible.',
+                'Collision-safe naming keeps runs reproducible.',
               icon: <Archive className="text-primary h-6 w-6" />,
             },
           ].map((item) => (
