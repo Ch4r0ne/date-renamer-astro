@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HomePage from '../components/HomePage';
+import { getGithubStats } from '../lib/github';
+
+const github = await getGithubStats();
+---
+
+<Layout
+  title="ARK ASA Server Manager for Windows | Dedicated Server Manager"
+  description="ARK ASA Server Manager for Windows ARK: Survival Ascended (ASA) dedicated servers"
+>
+  <HomePage github={github} client:load />
+</Layout>

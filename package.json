@@ -1,0 +1,61 @@
+{
+  "name": "asa-manager-site",
+  "private": true,
+  "description": "ARK: Survival Ascended Server Manager – Website & Documentation (Astro).",
+  "license": "MIT",
+  "author": "Technetpro (Tim Leinich)",
+  "packageManager": "pnpm@9.15.4",
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "scripts": {
+    "astro": "astro",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "lint:format": "prettier --check .",
+    "format": "prettier --write ."
+  },
+  "prettier": {
+    "bracketSpacing": true,
+    "singleQuote": true,
+    "plugins": [
+      "prettier-plugin-astro",
+      "prettier-plugin-tailwindcss"
+    ],
+    "overrides": [
+      {
+        "files": "*.astro",
+        "options": {
+          "parser": "astro"
+        }
+      }
+    ]
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.4.2",
+    "@fontsource-variable/fredoka": "^5.2.10",
+    "@fontsource-variable/nunito": "^5.2.7",
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/patrick-hand": "^5.2.8",
+    "astro": "^5.16.11",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.27.5",
+    "lucide-react": "^0.562.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "tailwind-merge": "^3.4.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.18",
+    "@types/node": "^25.0.9",
+    "@types/react": "^19.2.9",
+    "@types/react-dom": "^19.2.3",
+    "prettier": "^3.8.0",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.3"
+  }
+}

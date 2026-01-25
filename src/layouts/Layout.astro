@@ -1,0 +1,171 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = 'ARK ASA Server Manager for Windows | Dedicated Server Manager',
+  description = 'ARK ASA Server Manager for Windows ARK: Survival Ascended (ASA) dedicated servers',
+  noindex = false,
+} = Astro.props;
+
+/**
+ * Local fonts (DSGVO-safe, no Google requests)
+ * Using exact filenames verified in node_modules.
+ */
+import '@fontsource-variable/fredoka/wght.css';
+import '@fontsource-variable/nunito/wght.css';
+import '@fontsource-variable/nunito/wght-italic.css';
+import '@fontsource/patrick-hand/latin-400.css';
+import '@fontsource/patrick-hand/latin-ext-400.css';
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#E8A598" />
+
+    {noindex ? (
+      <meta name="robots" content="noindex, nofollow, noarchive" />
+    ) : (
+      <meta
+        name="robots"
+        content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+      />
+    )}
+
+    <link rel="icon" type="image/png" href="/images/favicon.png?v=4" />
+    <link rel="shortcut icon" href="/images/favicon.png?v=4" />
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png?v=4" />
+
+    <title>{title}</title>
+
+    <!-- Google Fonts removed (privacy + render-blocking fix) -->
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: 'ARK ASA Server Manager',
+        description:
+          'ARK ASA Server Manager for Windows to manage ARK: Survival Ascended (ASA) dedicated servers.',
+        applicationCategory: 'GameServerApplication',
+        operatingSystem: 'Windows',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+      })}
+    />
+  </head>
+
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @import 'tailwindcss';
+
+  @custom-variant hover (&:hover);
+
+  @theme inline {
+    --color-background: hsl(var(--background));
+    --color-foreground: hsl(var(--foreground));
+    --color-card: hsl(var(--card));
+    --color-card-foreground: hsl(var(--card-foreground));
+    --color-popover: hsl(var(--popover));
+    --color-popover-foreground: hsl(var(--popover-foreground));
+    --color-primary: hsl(var(--primary));
+    --color-primary-foreground: hsl(var(--primary-foreground));
+    --color-secondary: hsl(var(--secondary));
+    --color-secondary-foreground: hsl(var(--secondary-foreground));
+    --color-muted: hsl(var(--muted));
+    --color-muted-foreground: hsl(var(--muted-foreground));
+    --color-accent: hsl(var(--accent));
+    --color-accent-foreground: hsl(var(--accent-foreground));
+    --color-destructive: hsl(var(--destructive));
+    --color-destructive-foreground: hsl(var(--destructive-foreground));
+    --color-border: hsl(var(--border));
+    --color-input: hsl(var(--input));
+    --color-ring: hsl(var(--ring));
+
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+
+    /* Font tokens (now loaded locally) */
+    --font-sans: 'Nunito Variable', 'Nunito', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+      Arial, sans-serif;
+    --font-heading: 'Fredoka Variable', 'Fredoka', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+      Arial, sans-serif;
+    --font-hand: 'Patrick Hand', cursive;
+  }
+
+  :root {
+    --background: 40 33% 96%;
+    --foreground: 25 10% 30%;
+
+    --primary: 214 72% 45%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 140 25% 85%;
+    --secondary-foreground: 140 30% 25%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 25 10% 30%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 25 10% 30%;
+
+    --muted: 40 20% 90%;
+    --muted-foreground: 25 10% 50%;
+
+    --accent: 45 80% 90%;
+    --accent-foreground: 25 10% 30%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 40 20% 90%;
+    --input: 40 20% 90%;
+    --ring: 214 72% 45%;
+
+    --radius: 1rem;
+  }
+
+  @layer base {
+    html {
+      scroll-behavior: smooth;
+    }
+
+    * {
+      @apply border-border;
+    }
+
+    body {
+      @apply bg-background text-foreground font-sans antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      @apply font-heading font-semibold tracking-tight;
+    }
+  }
+
+  .font-hand {
+    font-family: var(--font-hand);
+  }
+</style>
