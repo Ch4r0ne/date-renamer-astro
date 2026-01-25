@@ -5,26 +5,30 @@ import {
   X,
   Github,
   ShieldCheck,
-  ServerCog,
-  Settings,
-  Terminal,
-  Database,
-  CheckCircle,
-  Lock,
-  Network,
-  Users,
+  Layers,
+  Zap,
+  Server,
+  RotateCcw,
+  Info,
+  Video,
+  Image,
+  Archive,
+  LayoutDashboard,
   BookOpen,
   LifeBuoy,
 } from 'lucide-react';
 import { useState, useEffect, type ReactNode } from 'react';
 
 const DOWNLOAD_LATEST_URL =
-  'https://github.com/Ch4r0ne/ARK-Ascended-Server-Manager/releases/latest';
-const REPO_URL = 'https://github.com/Ch4r0ne/ARK-Ascended-Server-Manager';
-const ISSUE_URL =
-  'https://github.com/Ch4r0ne/ARK-Ascended-Server-Manager/issues/new/choose';
+  'https://github.com/Ch4r0ne/date-renamer/releases/latest';
+const RELEASES_URL = 'https://github.com/Ch4r0ne/date-renamer/releases';
+const REPO_URL = 'https://github.com/Ch4r0ne/date-renamer';
+const ISSUE_URL = 'https://github.com/Ch4r0ne/date-renamer/issues';
+const CHANGELOG_URL =
+  'https://github.com/Ch4r0ne/date-renamer/compare/v5.0...v6.0';
 const LICENSE_URL =
-  'https://github.com/Ch4r0ne/ARK-Ascended-Server-Manager/blob/main/LICENSE';
+  'https://github.com/Ch4r0ne/date-renamer/blob/main/LICENSE';
+const DOCS_URL = 'https://github.com/Ch4r0ne/date-renamer#readme';
 const PUBLISHER_URL = 'https://github.com/Ch4r0ne';
 
 type GithubStats = {
@@ -51,12 +55,13 @@ const Navigation = () => {
       const sections = [
         'home',
         'story',
+        'problem',
+        'how-it-works',
         'features',
-        'quickstart',
-        'multi-instance',
-        'security',
-        'faq',
-        'cta',
+        'screenshots',
+        'use-cases',
+        'download',
+        'open-source',
       ];
       let current = 'home';
 
@@ -78,11 +83,12 @@ const Navigation = () => {
 
   const navLinks = [
     { href: '#story', label: 'Story', id: 'story' },
+    { href: '#problem', label: 'Problem', id: 'problem' },
+    { href: '#how-it-works', label: 'How it works', id: 'how-it-works' },
     { href: '#features', label: 'Features', id: 'features' },
-    { href: '#quickstart', label: 'Quickstart', id: 'quickstart' },
-    { href: '#multi-instance', label: 'Multi-Instance', id: 'multi-instance' },
-    { href: '#security', label: 'Security', id: 'security' },
-    { href: '#faq', label: 'FAQ', id: 'faq' },
+    { href: '#screenshots', label: 'Screens', id: 'screenshots' },
+    { href: '#use-cases', label: 'Use cases', id: 'use-cases' },
+    { href: '#download', label: 'Download', id: 'download' },
   ];
 
   return (
@@ -93,11 +99,11 @@ const Navigation = () => {
       >
         <img
           src="/images/favicon.png"
-          alt="ARK ASA Server Manager Icon"
+          alt="Date Renamer Toolkit Icon"
           className="h-8 w-8"
         />
         <span className="font-heading text-foreground text-2xl font-bold">
-          ARK ASA Server Manager
+          Date Renamer Toolkit
         </span>
       </a>
 
@@ -231,12 +237,12 @@ const Hero = ({ github }: { github: GithubStats }) => {
           transition={{ duration: 0.6 }}
         >
           <span className="font-hand text-primary mb-4 inline-block -rotate-2 text-2xl">
-            Professionelle Windows-GUI für ARK: Survival Ascended
+            Deterministic media renaming for real-world archives
           </span>
           <h1 className="font-heading text-foreground mb-6 text-5xl leading-[1.1] font-bold md:text-7xl">
-            ASA Server Manager{' '}
+            Rename media by the{' '}
             <span className="text-primary relative inline-block">
-              für Windows
+              timestamp you can trust
               <svg
                 className="text-accent absolute -bottom-1 left-0 -z-10 h-3 w-full"
                 viewBox="0 0 100 10"
@@ -252,21 +258,29 @@ const Hero = ({ github }: { github: GithubStats }) => {
             </span>
           </h1>
           <p className="text-muted-foreground max-w-xl text-lg leading-relaxed md:text-xl">
-            Klare Workflows für Deployments, Updates und tägliche Ops – stabil,
-            nachvollziehbar und auf Windows optimiert.
+            Date Renamer Toolkit renames photos and videos by the best available
+            capture timestamp — with transparent source diagnostics and a live
+            rename preview. Built for real-world media libraries, editing
+            workflows, and NAS archives.
           </p>
 
           <div className="flex flex-wrap gap-4 pt-4">
             <a href={DOWNLOAD_LATEST_URL} target="_blank" rel="noreferrer">
               <button className="font-heading bg-primary text-primary-foreground hover:bg-primary/90 flex items-center gap-2 rounded-full px-6 py-3 font-bold shadow-lg transition-all hover:scale-105 hover:shadow-xl">
                 <Download className="h-5 w-5" />
-                Download Latest
+                Download Latest Release
+              </button>
+            </a>
+            <a href={DOCS_URL} target="_blank" rel="noreferrer">
+              <button className="font-heading border-border text-foreground hover:border-primary flex items-center gap-2 rounded-full border px-6 py-3 font-bold shadow-sm transition-all hover:scale-105">
+                <BookOpen className="h-5 w-5" />
+                View Documentation
               </button>
             </a>
             <a href={REPO_URL} target="_blank" rel="noreferrer">
               <button className="font-heading border-border text-foreground hover:border-primary flex items-center gap-2 rounded-full border px-6 py-3 font-bold shadow-sm transition-all hover:scale-105">
                 <Github className="h-5 w-5" />
-                GitHub Repo
+                GitHub Repository
               </button>
             </a>
           </div>
@@ -280,27 +294,27 @@ const Hero = ({ github }: { github: GithubStats }) => {
             {[
               {
                 icon: ShieldCheck,
-                label: 'Safe Start & Safe Stop',
+                label: 'Windows · macOS · Linux',
                 color: 'text-green-600',
               },
               {
-                icon: Terminal,
-                label: 'SteamCMD Updates',
+                icon: Zap,
+                label: 'ExifTool-first',
                 color: 'text-blue-600',
               },
               {
-                icon: Lock,
-                label: 'SHA256 Checksums',
+                icon: RotateCcw,
+                label: 'Undo (last session)',
                 color: 'text-purple-600',
               },
               {
-                icon: Settings,
-                label: 'Staged INI Workflow',
+                icon: Layers,
+                label: 'Parallel scan',
                 color: 'text-orange-600',
               },
             ].map((badge, idx) => (
               <motion.div
-                key={idx}
+                key={badge.label}
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 + idx * 0.1 }}
@@ -324,8 +338,8 @@ const Hero = ({ github }: { github: GithubStats }) => {
           className="relative z-10"
         >
           <img
-            src="/images/ASA_Server_Manager_Preview_2.png"
-            alt="ARK ASA Server Manager UI preview"
+            src="/images/date-renamer.png"
+            alt="Date Renamer Toolkit UI preview"
             className="h-auto w-full transform rounded-xl shadow-2xl transition-transform duration-700 hover:rotate-0 md:rotate-2"
           />
 
@@ -343,8 +357,8 @@ const Hero = ({ github }: { github: GithubStats }) => {
               <p className="text-sm font-bold">GitHub Live-Status</p>
               {repo ? (
                 <p className="text-muted-foreground text-xs">
-                  {formatNumber(repo.stars)} Stars · {formatNumber(repo.forks)} Forks ·{' '}
-                  {formatNumber(repo.openIssues)} Issues
+                  {formatNumber(repo.stars)} Stars · {formatNumber(repo.forks)}
+                  Forks · {formatNumber(repo.openIssues)} Issues
                 </p>
               ) : (
                 <p className="text-muted-foreground text-xs">
@@ -436,59 +450,59 @@ const Features = () => {
       <div className="mx-auto max-w-7xl">
         <div className="mb-16 space-y-4 text-center">
           <span className="font-hand text-primary text-xl">
-            ARK Dedicated Server Manager Features
+            Built for deterministic archives
           </span>
           <h2 className="font-heading text-foreground text-4xl font-bold md:text-5xl">
-            Entwickelt für professionelle ASA-Operations
+            Features that explain every rename
           </h2>
           <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-            Klar strukturierte Tools für stabile Windows-Deployments und
-            nachvollziehbare Prozesse.
+            No magic. Every file shows you exactly where its timestamp comes
+            from.
           </p>
         </div>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           <FeatureCard
-            title="Safe start and safe stop"
-            desc="Controlled shutdown path to reduce save loss and config drift."
-            icon={<ShieldCheck className="text-primary h-8 w-8" />}
+            title="Live Preview"
+            desc="Shows old/new filenames with tooltip diagnostics before you touch the filesystem."
+            icon={<LayoutDashboard className="text-primary h-8 w-8" />}
             delay={0.1}
+            testId="card-feature-preview"
+          />
+          <FeatureCard
+            title="ExifTool-first"
+            desc="Batch scanning on Windows with transparent source priority."
+            icon={<Zap className="text-primary h-8 w-8" />}
+            delay={0.2}
+            testId="card-feature-exiftool"
+          />
+          <FeatureCard
+            title="Deep Mode"
+            desc="Filename patterns, XMP, and Google Takeout JSON sidecars included."
+            icon={<Layers className="text-primary h-8 w-8" />}
+            delay={0.3}
+            testId="card-feature-deep-mode"
+          />
+          <FeatureCard
+            title="Safe rename"
+            desc="Collision-proof unique naming so every rename is predictable."
+            icon={<ShieldCheck className="text-primary h-8 w-8" />}
+            delay={0.4}
             testId="card-feature-safe"
           />
           <FeatureCard
-            title="Staged INI workflow"
-            desc="Edit safely, apply on start, restore baseline on safe stop."
-            icon={<Settings className="text-primary h-8 w-8" />}
-            delay={0.2}
-            testId="card-feature-ini"
-          />
-          <FeatureCard
-            title="Predictable maintenance"
-            desc="SteamCMD install, update, and validate in one workflow."
-            icon={<Terminal className="text-primary h-8 w-8" />}
-            delay={0.3}
-            testId="card-feature-steamcmd"
-          />
-          <FeatureCard
-            title="Operator tooling"
-            desc="RCON-driven admin tasks with guardrails for daily ops."
-            icon={<ServerCog className="text-primary h-8 w-8" />}
-            delay={0.4}
-            testId="card-feature-rcon"
-          />
-          <FeatureCard
-            title="Backups and retention"
-            desc="Structured backups and retention logic for fast restores."
-            icon={<Database className="text-primary h-8 w-8" />}
+            title="Parallel scan"
+            desc="Built for large folders and NAS archives without UI hangs."
+            icon={<Server className="text-primary h-8 w-8" />}
             delay={0.5}
-            testId="card-feature-backups"
+            testId="card-feature-parallel"
           />
           <FeatureCard
-            title="Release integrity"
-            desc="SHA256 checksums make every download verifiable."
-            icon={<Lock className="text-primary h-8 w-8" />}
+            title="Undo last run"
+            desc="Undo the last rename session to recover quickly if needed."
+            icon={<RotateCcw className="text-primary h-8 w-8" />}
             delay={0.6}
-            testId="card-feature-sha"
+            testId="card-feature-undo"
           />
         </div>
       </div>
@@ -501,37 +515,42 @@ const Story = () => {
     <section id="story" className="relative px-6 py-24 md:px-12 lg:px-24">
       <div className="mx-auto grid max-w-6xl gap-10 rounded-[2.5rem] bg-white/70 p-10 shadow-lg md:grid-cols-[1.1fr_0.9fr]">
         <div className="space-y-5">
-          <span className="font-hand text-primary text-xl">
-            Unsere Entstehungsgeschichte
-          </span>
+          <span className="font-hand text-primary text-xl">Why I built it</span>
           <h2 className="font-heading text-foreground text-4xl font-bold md:text-5xl">
-            Vom PowerShell-Skript zur professionellen Manager-Suite
+            The renamer I needed for my own archive
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            Angefangen hat alles mit einem kleinen PowerShell-Skript, das unsere
-            ersten Serverstarts automatisierte. Durch Community-Feedback wurde
-            daraus Schritt für Schritt ein vollständiger Manager – heute als
-            Python-basierte Lösung, die Enterprise-Prozesse auf Windows abbildet.
+            I built Date Renamer Toolkit because, after years of media chaos
+            (camera, smartphone, DJI, messenger exports, Google Takeout), I
+            couldn&apos;t find a Windows app that reliably sorted photos and videos by
+            the real capture time — without guessing.
           </p>
           <p className="text-muted-foreground">
-            Dieser Weg prägt unsere Prioritäten: stabile Releases, klare
-            Workflows und nachvollziehbare Updates für Teams, die täglich mit
-            ASA-Servern arbeiten.
+            For editing and NAS archiving, I need an order that always works:
+            timestamp in → filename out → done. No UI hangs, no “somehow”
+            sorting, no hidden decisions.
+          </p>
+          <p className="text-muted-foreground">
+            Today, Date Renamer Toolkit is the app I wanted: deterministic,
+            fast, transparent, and built like a real desktop product.
           </p>
         </div>
         <div className="grid gap-4">
           {[
             {
-              title: 'Phase 1 · PowerShell',
-              detail: 'Automatisierte erste Starts und Updates.',
+              title: 'The real problem',
+              detail:
+                'If you want to cut, archive, or find media later, you must trust the result.',
             },
             {
-              title: 'Phase 2 · Community',
-              detail: 'Wünsche aus der Community wurden zu Features.',
+              title: 'What broke other tools',
+              detail:
+                'Videos behave differently than JPEGs, exports strip metadata, and Takeout needs sidecars.',
             },
             {
-              title: 'Phase 3 · Python',
-              detail: 'Skalierbarer Manager mit klaren Ops-Prozessen.',
+              title: 'What this tool does',
+              detail:
+                'Finds the best timestamp, shows its source, resolves collisions, and previews every rename.',
             },
           ].map((item) => (
             <div
@@ -548,42 +567,108 @@ const Story = () => {
   );
 };
 
-const Quickstart = () => {
+const ProblemSolution = () => {
+  return (
+    <section
+      id="problem"
+      className="bg-secondary/20 flex items-center justify-center px-6 py-24"
+    >
+      <motion.div
+        className="relative mx-auto max-w-6xl"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="mb-12 text-center">
+          <span className="font-hand text-primary text-xl">Problem → Solution</span>
+          <h3 className="font-heading text-foreground mt-3 text-3xl font-bold md:text-4xl">
+            Real-world media problems need deterministic answers
+          </h3>
+        </div>
+        <div className="grid gap-6 rounded-[2rem] bg-white/80 p-8 shadow-lg md:grid-cols-3">
+          {[
+            {
+              title: 'Messengers strip metadata',
+              detail:
+                '“No timestamp” becomes predictable with skip, fallback, or Deep Mode patterns.',
+              icon: <Image className="text-primary h-6 w-6" />,
+            },
+            {
+              title: 'Video timestamps are inconsistent',
+              detail:
+                'ExifTool + MediaInfo precedence keeps QuickTime/MP4/MOV in order.',
+              icon: <Video className="text-primary h-6 w-6" />,
+            },
+            {
+              title: 'NAS archives demand stability',
+              detail:
+                'Deterministic renames with collision-safe naming stay repeatable.',
+              icon: <Archive className="text-primary h-6 w-6" />,
+            },
+          ].map((item) => (
+            <div key={item.title} className="flex items-start gap-3">
+              <div className="bg-primary/10 mt-1 rounded-full p-2">
+                {item.icon}
+              </div>
+              <div>
+                <p className="text-foreground font-semibold">{item.title}</p>
+                <p className="text-muted-foreground text-sm">{item.detail}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+    </section>
+  );
+};
+
+const HowItWorks = () => {
   const steps = [
     {
       step: 'Step 1',
-      title: 'Download & Start',
-      detail:
-        'Aktuelle EXE aus den GitHub Releases laden und ARK-ASA-Manager.exe starten.',
-      icon: <Download className="text-primary h-8 w-8" />,
+      title: 'Scan folder',
+      detail: 'Select a folder and batch scan every file.',
+      icon: <Server className="text-primary h-7 w-7" />,
     },
     {
       step: 'Step 2',
-      title: 'Ersteinrichtung',
-      detail:
-        'Einmalig „First Install“ ausführen und Pfade, Ports sowie Settings setzen.',
-      icon: <Settings className="text-primary h-8 w-8" />,
+      title: 'Resolve timestamp',
+      detail: 'Uses ExifTool first with source visibility.',
+      icon: <Info className="text-primary h-7 w-7" />,
     },
     {
       step: 'Step 3',
-      title: 'Betrieb',
-      detail:
-        'Server starten, sicher stoppen, Änderungen kontrolliert ausrollen.',
-      icon: <ServerCog className="text-primary h-8 w-8" />,
+      title: 'Preview rename plan',
+      detail: 'Live preview shows old/new names and diagnostics.',
+      icon: <LayoutDashboard className="text-primary h-7 w-7" />,
+    },
+    {
+      step: 'Step 4',
+      title: 'Rename + Undo',
+      detail: 'Apply deterministic renames and undo the last run.',
+      icon: <RotateCcw className="text-primary h-7 w-7" />,
     },
   ];
 
+  const chips = [
+    'exiftool:QuickTime:CreateDate',
+    'takeout_json',
+    'filename:DJI_YYYYMMDD_HHMMSS',
+    'fs_created (optional)',
+  ];
+
   return (
-    <section id="quickstart" className="relative px-6 py-24 md:px-12 lg:px-24">
+    <section id="how-it-works" className="relative px-6 py-24 md:px-12 lg:px-24">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-16 space-y-4 text-center">
-          <span className="font-hand text-primary text-xl">Quickstart</span>
+        <div className="mb-12 space-y-4 text-center">
+          <span className="font-hand text-primary text-xl">How it works</span>
           <h2 className="font-heading text-foreground text-4xl font-bold md:text-5xl">
-            ASA-Server in wenigen Minuten produktiv
+            A transparent pipeline from scan to rename
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {steps.map((step, idx) => (
             <motion.div
               key={step.step}
@@ -611,163 +696,240 @@ const Quickstart = () => {
             </motion.div>
           ))}
         </div>
-      </div>
-    </section>
-  );
-};
 
-const MultiInstance = () => {
-  return (
-    <section
-      id="multi-instance"
-      className="bg-secondary/20 flex items-center justify-center px-6 py-24"
-    >
-      <motion.div
-        className="relative mx-auto max-w-5xl"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <h3 className="font-heading text-foreground mb-6 text-center text-3xl font-bold md:text-4xl">
-          Multi-Instance & Cluster-ready
-        </h3>
-        <p className="text-muted-foreground mb-8 text-center text-lg">
-          Mehrere Instanzen ohne Kollisionen dank klarer Trennung pro Server.
-        </p>
-        <div className="grid gap-4 rounded-[2rem] bg-white/80 p-8 shadow-lg">
-          <div className="flex items-start gap-3">
-            <Network className="text-primary mt-1 h-6 w-6" />
-            <p className="text-muted-foreground">
-              Unique ports pro Instance: game, query und RCON.
-            </p>
-          </div>
-          <div className="flex items-start gap-3">
-            <Database className="text-primary mt-1 h-6 w-6" />
-            <p className="text-muted-foreground">
-              AltSaveDirectoryName nutzen, um Saves sauber zu isolieren.
-            </p>
-          </div>
-          <div className="flex items-start gap-3">
-            <Users className="text-primary mt-1 h-6 w-6" />
-            <p className="text-muted-foreground">
-              Cluster IDs konsistent halten für zuverlässige Transfers.
-            </p>
-          </div>
-        </div>
-      </motion.div>
-    </section>
-  );
-};
-
-const Security = () => {
-  return (
-    <section id="security" className="relative px-6 py-24 md:px-12 lg:px-24">
-      <div className="mx-auto max-w-6xl">
-        <div className="mb-12 space-y-4 text-center">
-          <span className="font-hand text-primary text-xl">
-            Trust & Security
-          </span>
-          <h2 className="font-heading text-foreground text-4xl font-bold md:text-5xl">
-            Verifizierte Releases, sichere Abläufe
-          </h2>
-          <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-            Quelle der Wahrheit: GitHub Releases. Jede Datei vor dem Einsatz
-            verifizieren.
-          </p>
-        </div>
-
-        <div className="grid gap-8 rounded-[2rem] bg-white/80 p-8 shadow-lg md:grid-cols-2">
-          <div className="space-y-4">
-            <h3 className="font-heading text-foreground text-2xl font-bold">
-              SHA256 Verify Command
-            </h3>
-            <div className="bg-secondary/30 text-foreground rounded-xl p-4 text-sm">
-              <code>Get-FileHash -Algorithm SHA256 ".\\ARK-ASA-Manager.exe"</code>
-            </div>
-            <p className="text-muted-foreground text-sm">
-              Ausgabe mit der SHA256-Checksumme der Release vergleichen.
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            <h3 className="font-heading text-foreground text-2xl font-bold">
-              Security best practices
-            </h3>
-            <ul className="text-muted-foreground space-y-3 text-sm">
-              <li className="flex items-start gap-2">
-                <Lock className="text-primary mt-0.5 h-4 w-4" />
-                RCON nicht ins Public Internet exponieren.
-              </li>
-              <li className="flex items-start gap-2">
-                <ShieldCheck className="text-primary mt-0.5 h-4 w-4" />
-                Firewall allow lists oder VPN für Admin Access.
-              </li>
-              <li className="flex items-start gap-2">
-                <CheckCircle className="text-primary mt-0.5 h-4 w-4" />
-                Updates über SteamCMD install/update/validate.
-              </li>
-            </ul>
-          </div>
+        <div className="mt-10 flex flex-wrap justify-center gap-3">
+          {chips.map((chip) => (
+            <span
+              key={chip}
+              className="bg-secondary/30 border-border/40 text-muted-foreground rounded-full border px-4 py-2 text-xs font-medium"
+            >
+              {chip}
+            </span>
+          ))}
         </div>
       </div>
     </section>
   );
 };
 
-const Faq = () => {
-  const faqs = [
+const Screenshots = () => {
+  const shots = [
     {
-      question: 'Welche Ports werden typischerweise genutzt? ',
-      answer:
-        'UDP 7777 (game), UDP 27015 (query), TCP 27020 (RCON wenn aktiviert).',
+      title: 'Main UI · Live preview',
+      desc: 'Compare old vs new names with real-time diagnostics.',
+      image: '/images/date-renamer.png',
     },
     {
-      question: 'Was muss ich bei Multi-Instance beachten?',
-      answer:
-        'Unique ports + AltSaveDirectoryName + configs separieren, staged INI workflow nutzen.',
+      title: 'Advanced options',
+      desc: 'ExifTool mode, Deep Mode flags, and parallel scan.',
+      image: '/images/date-renamer.png',
     },
     {
-      question: 'Was bedeutet staged INI workflow?',
-      answer:
-        'Änderungen werden sicher vorbereitet, beim Start angewendet und beim Safe Stop zurückgesetzt.',
-    },
-    {
-      question: 'RCON exposure?',
-      answer: 'No. RCON niemals öffentlich ins Internet stellen.',
-    },
-    {
-      question: 'Wie laufen Updates?',
-      answer: 'Über SteamCMD install/update/validate.',
+      title: 'Tooltip transparency',
+      desc: 'See exactly why a timestamp was chosen.',
+      image: '/images/date-renamer.png',
     },
   ];
 
   return (
-    <section id="faq" className="relative bg-white/50 px-6 py-24 md:px-12 lg:px-24">
-      <div className="mx-auto max-w-6xl">
+    <section id="screenshots" className="relative bg-white/50 px-6 py-24 md:px-12 lg:px-24">
+      <div className="mx-auto max-w-7xl">
         <div className="mb-12 space-y-4 text-center">
-          <span className="font-hand text-primary text-xl">FAQ</span>
+          <span className="font-hand text-primary text-xl">Screenshots</span>
           <h2 className="font-heading text-foreground text-4xl font-bold md:text-5xl">
-            Antworten für ASA Server Manager Ops
+            See the UI before you rename
           </h2>
         </div>
 
-        <div className="grid gap-6">
-          {faqs.map((faq, idx) => (
+        <div className="grid gap-8 md:grid-cols-3">
+          {shots.map((shot) => (
             <motion.div
-              key={faq.question}
+              key={shot.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.05 }}
-              className="bg-card rounded-[1.5rem] p-6 shadow-md"
+              transition={{ duration: 0.5 }}
+              className="bg-card flex h-full flex-col overflow-hidden rounded-[2rem] shadow-lg"
             >
-              <h3 className="font-heading text-foreground mb-2 text-lg font-bold">
-                {faq.question}
+              <img src={shot.image} alt={shot.title} className="h-auto w-full" />
+              <div className="space-y-2 p-6">
+                <h3 className="font-heading text-foreground text-lg font-bold">
+                  {shot.title}
+                </h3>
+                <p className="text-muted-foreground text-sm">{shot.desc}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const UseCases = () => {
+  return (
+    <section id="use-cases" className="relative px-6 py-24 md:px-12 lg:px-24">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-12 space-y-4 text-center">
+          <span className="font-hand text-primary text-xl">Use cases</span>
+          <h2 className="font-heading text-foreground text-4xl font-bold md:text-5xl">
+            Built for the workflows that break other tools
+          </h2>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2">
+          {[
+            {
+              title: 'Video editing prep',
+              detail: 'Rename footage once, then import cleanly into your NLE.',
+              icon: <Video className="text-primary h-6 w-6" />,
+            },
+            {
+              title: 'NAS / archive',
+              detail: 'Keep consistent structure across devices and exports.',
+              icon: <Archive className="text-primary h-6 w-6" />,
+            },
+            {
+              title: 'Google Takeout',
+              detail: 'Sidecars are respected, so exports stay trustworthy.',
+              icon: <Info className="text-primary h-6 w-6" />,
+            },
+            {
+              title: 'DJI & action cams',
+              detail: 'Filename timestamps are parsed in Deep Mode.',
+              icon: <Image className="text-primary h-6 w-6" />,
+            },
+          ].map((item) => (
+            <div
+              key={item.title}
+              className="bg-card flex items-start gap-4 rounded-[1.5rem] p-6 shadow-md"
+            >
+              <div className="bg-primary/10 rounded-full p-3">{item.icon}</div>
+              <div>
+                <h3 className="font-heading text-foreground text-lg font-bold">
+                  {item.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {item.detail}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const DownloadSection = () => {
+  return (
+    <section id="download" className="relative bg-secondary/20 px-6 py-24">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-12 space-y-4 text-center">
+          <span className="font-hand text-primary text-xl">Download</span>
+          <h2 className="font-heading text-foreground text-4xl font-bold md:text-5xl">
+            Get Date Renamer Toolkit
+          </h2>
+          <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
+            Release builds ship as native apps. No Python required.
+          </p>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {[
+            { label: 'Windows (.exe)', href: DOWNLOAD_LATEST_URL },
+            { label: 'macOS (.app)', href: DOWNLOAD_LATEST_URL },
+            { label: 'Linux', href: DOWNLOAD_LATEST_URL },
+          ].map((item) => (
+            <motion.a
+              key={item.label}
+              href={item.href}
+              target="_blank"
+              rel="noreferrer"
+              whileHover={{ y: -6 }}
+              className="bg-card flex flex-col items-center gap-3 rounded-[2rem] p-8 text-center shadow-lg transition-shadow hover:shadow-xl"
+            >
+              <div className="bg-primary/15 flex h-16 w-16 items-center justify-center rounded-full">
+                <Download className="text-primary h-8 w-8" />
+              </div>
+              <h3 className="font-heading text-foreground text-2xl font-bold">
+                {item.label}
               </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {faq.answer}
+              <p className="text-muted-foreground text-sm">
+                Latest release from GitHub.
               </p>
+            </motion.a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const OpenSource = () => {
+  return (
+    <section id="open-source" className="relative px-6 py-24 md:px-12 lg:px-24">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-12 space-y-4 text-center">
+          <span className="font-hand text-primary text-xl">Open Source</span>
+          <h2 className="font-heading text-foreground text-4xl font-bold md:text-5xl">
+            Contribute patterns, ideas, and feedback
+          </h2>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {[
+            {
+              id: 'cta-download',
+              title: 'Releases',
+              description: 'Grab the latest build for your OS.',
+              href: RELEASES_URL,
+              testId: 'button-cta-download',
+              icon: <Download className="text-primary h-8 w-8" />,
+            },
+            {
+              id: 'cta-repo',
+              title: 'GitHub Repo',
+              description: 'Source code, roadmap, and documentation.',
+              href: REPO_URL,
+              testId: 'button-cta-repo',
+              icon: <Github className="text-primary h-8 w-8" />,
+            },
+            {
+              id: 'cta-issue',
+              title: 'Issues & Patterns',
+              description: 'Report problems or contribute filename patterns.',
+              href: ISSUE_URL,
+              testId: 'button-cta-issue',
+              icon: <LifeBuoy className="text-primary h-8 w-8" />,
+            },
+          ].map((cta, idx) => (
+            <motion.div
+              key={cta.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1, duration: 0.5 }}
+              whileHover={{ y: -8 }}
+              className="bg-card flex h-full flex-col items-center gap-4 rounded-[2rem] p-8 text-center shadow-lg transition-shadow hover:shadow-xl"
+            >
+              <div className="bg-primary/15 flex h-16 w-16 items-center justify-center rounded-full">
+                {cta.icon}
+              </div>
+              <h3 className="font-heading text-foreground text-2xl font-bold">
+                {cta.title}
+              </h3>
+              <p className="text-muted-foreground flex-1">
+                {cta.description}
+              </p>
+              <a href={cta.href} target="_blank" rel="noreferrer">
+                <button
+                  data-testid={cta.testId}
+                  className="bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer rounded-full px-6 py-2 text-sm font-bold shadow-md transition-colors"
+                >
+                  Learn more
+                </button>
+              </a>
             </motion.div>
           ))}
         </div>
@@ -791,16 +953,16 @@ export const Footer = () => {
             <div className="flex items-center gap-3">
               <img
                 src="/images/favicon.png"
-                alt="ARK ASA Server Manager Icon"
+                alt="Date Renamer Toolkit Icon"
                 className="h-7 w-7"
               />
               <h3 className="font-heading text-foreground text-lg font-bold">
-                ARK ASA Server Manager
+                Date Renamer Toolkit
               </h3>
             </div>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              Windows GUI für ARK: Survival Ascended Dedicated Server mit klaren
-              Ops-Workflows.
+              Deterministic media renaming for archives, editors, and NAS
+              workflows.
             </p>
           </motion.div>
 
@@ -818,12 +980,12 @@ export const Footer = () => {
               </div>
               <div className="flex flex-col gap-2 pl-7">
                 <a
-                  href={DOWNLOAD_LATEST_URL}
+                  href={RELEASES_URL}
                   className="text-muted-foreground hover:text-primary w-fit text-sm transition-colors"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Download Latest
+                  Releases
                 </a>
                 <a
                   href={REPO_URL}
@@ -831,7 +993,15 @@ export const Footer = () => {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  GitHub Repo
+                  GitHub Repository
+                </a>
+                <a
+                  href={CHANGELOG_URL}
+                  className="text-muted-foreground hover:text-primary w-fit text-sm transition-colors"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Changelog v6.0
                 </a>
                 <a
                   href={ISSUE_URL}
@@ -858,18 +1028,6 @@ export const Footer = () => {
                 >
                   License
                 </a>
-                <a
-                  href="/imprint"
-                  className="text-muted-foreground hover:text-primary w-fit text-sm transition-colors"
-                >
-                  Imprint
-                </a>
-                <a
-                  href="/privacy"
-                  className="text-muted-foreground hover:text-primary w-fit text-sm transition-colors"
-                >
-                  Privacy Policy
-                </a>
               </div>
             </div>
           </motion.div>
@@ -886,7 +1044,7 @@ export const Footer = () => {
                 Publisher
               </h4>
               <p className="text-muted-foreground text-sm">
-                Link to the official publisher profile.
+                Follow for updates and new releases.
               </p>
             </div>
             <div className="flex flex-col gap-3">
@@ -896,8 +1054,8 @@ export const Footer = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <Users className="h-4 w-4" />
-                Publisher
+                <Github className="h-4 w-4" />
+                Ch4r0ne on GitHub
               </a>
             </div>
           </motion.div>
@@ -913,8 +1071,8 @@ export const Footer = () => {
         >
           <p>&copy; {new Date().getFullYear()} Ch4r0ne. All rights reserved.</p>
           <p className="flex items-center justify-center gap-1">
-            Built with <LifeBuoy className="h-3 w-3 text-red-400" /> for ASA
-            server operators
+            Built with <LifeBuoy className="h-3 w-3 text-red-400" /> for media
+            archivists
           </p>
         </motion.div>
       </div>
@@ -928,89 +1086,13 @@ export default function HomePage({ github }: { github: GithubStats }) {
       <Navigation />
       <Hero github={github} />
       <Story />
+      <ProblemSolution />
+      <HowItWorks />
       <Features />
-      <Quickstart />
-      <MultiInstance />
-      <Security />
-      <Faq />
-      <section id="cta" className="px-6 py-24">
-        <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-12 space-y-4 text-center"
-          >
-            <h2 className="font-heading text-foreground text-4xl font-bold md:text-5xl">
-              Bereit für saubere ASA-Operations?
-            </h2>
-            <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-              Lade den ARK Ascended Server Manager oder teile Wünsche auf
-              GitHub.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {[
-              {
-                id: 'cta-download',
-                title: 'Download',
-                description:
-                  'Neueste Windows-Version aus den GitHub Releases.',
-                href: DOWNLOAD_LATEST_URL,
-                testId: 'button-cta-download',
-                icon: <Download className="text-primary h-8 w-8" />,
-              },
-              {
-                id: 'cta-repo',
-                title: 'GitHub Repo',
-                description:
-                  'Source, Roadmap und kommende Verbesserungen.',
-                href: REPO_URL,
-                testId: 'button-cta-repo',
-                icon: <Github className="text-primary h-8 w-8" />,
-              },
-              {
-                id: 'cta-issue',
-                title: 'Issue / Feature',
-                description: 'Feedback teilen oder neue Funktionen vorschlagen.',
-                href: ISSUE_URL,
-                testId: 'button-cta-issue',
-                icon: <LifeBuoy className="text-primary h-8 w-8" />,
-              },
-            ].map((cta, idx) => (
-              <motion.div
-                key={cta.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1, duration: 0.5 }}
-                whileHover={{ y: -8 }}
-                className="bg-card flex h-full flex-col items-center gap-4 rounded-[2rem] p-8 text-center shadow-lg transition-shadow hover:shadow-xl"
-              >
-                <div className="bg-primary/15 flex h-16 w-16 items-center justify-center rounded-full">
-                  {cta.icon}
-                </div>
-                <h3 className="font-heading text-foreground text-2xl font-bold">
-                  {cta.title}
-                </h3>
-                <p className="text-muted-foreground flex-1">
-                  {cta.description}
-                </p>
-                <a href={cta.href} target="_blank" rel="noreferrer">
-                  <button
-                    data-testid={cta.testId}
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer rounded-full px-6 py-2 text-sm font-bold shadow-md transition-colors"
-                  >
-                    Get Started
-                  </button>
-                </a>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Screenshots />
+      <UseCases />
+      <DownloadSection />
+      <OpenSource />
       <Footer />
     </div>
   );
