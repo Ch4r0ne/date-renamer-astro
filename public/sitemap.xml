@@ -1,30 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://asa-manager.technetpro.de/</loc>
+    <loc>https://renamer.technetpro.de/</loc>
   </url>
   <url>
-    <loc>https://asa-manager.technetpro.de/about</loc>
+    <loc>https://renamer.technetpro.de/imprint</loc>
   </url>
   <url>
-    <loc>https://asa-manager.technetpro.de/app</loc>
-  </url>
-  <url>
-    <loc>https://asa-manager.technetpro.de/contact</loc>
-  </url>
-  <url>
-    <loc>https://asa-manager.technetpro.de/explore</loc>
-  </url>
-  <url>
-    <loc>https://asa-manager.technetpro.de/faq</loc>
-  </url>
-  <url>
-    <loc>https://asa-manager.technetpro.de/guide</loc>
-  </url>
-  <url>
-    <loc>https://asa-manager.technetpro.de/join</loc>
-  </url>
-  <url>
-    <loc>https://asa-manager.technetpro.de/privacy</loc>
+    <loc>https://renamer.technetpro.de/privacy</loc>
   </url>
 </urlset>

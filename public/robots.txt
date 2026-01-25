@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://asa-manager.technetpro.de/sitemap.xml
+Sitemap: https://renamer.technetpro.de/sitemap.xml
