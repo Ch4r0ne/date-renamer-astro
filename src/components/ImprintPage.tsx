@@ -57,16 +57,16 @@ export default function ImprintPage() {
               <section className="space-y-3">
                 <h2 className="font-heading text-foreground text-xl font-bold">Projekt</h2>
                 <p className="text-muted-foreground">
-                  ARK ASA Server Manager Community/Open-Source Projekt.
+                  Date Renamer Toolkit Community/Open-Source Projekt.
                   <br />
                   Repository:{' '}
                   <a
-                    href="https://github.com/Ch4r0ne/ARK-Ascended-Server-Manager-Astro"
+                    href="https://github.com/Ch4r0ne/date-renamer"
                     className="text-primary underline"
                     target="_blank"
                     rel="noreferrer"
                   >
-                    https://github.com/Ch4r0ne/ARK-Ascended-Server-Manager-Astro
+                    https://github.com/Ch4r0ne/date-renamer
                   </a>
                 </p>
               </section>

@@ -3,7 +3,7 @@ import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://asa-manager.technetpro.de',
+  site: 'https://renamer.technetpro.de',
   integrations: [react()],
   vite: { plugins: [tailwindcss()] },
   server: {
