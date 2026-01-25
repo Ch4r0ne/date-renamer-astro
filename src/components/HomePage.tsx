@@ -294,7 +294,7 @@ const Hero = ({ github }: { github: GithubStats }) => {
             {[
               {
                 icon: ShieldCheck,
-                label: 'Windows · macOS · Linux',
+                label: 'Windows · macOS',
                 color: 'text-green-600',
               },
               {
@@ -378,14 +378,14 @@ const Hero = ({ github }: { github: GithubStats }) => {
             className="bg-card absolute -top-4 -right-4 flex max-w-[220px] items-center gap-3 rounded-2xl p-4 shadow-lg md:-right-8"
           >
             <div className="rounded-full bg-blue-100 p-2 text-blue-600">
-              <Download size={20} />
+              <Info size={20} />
             </div>
             <div>
-              <p className="text-sm font-bold">Latest Release</p>
+              <p className="text-sm font-bold">Release Snapshot</p>
               {release ? (
                 <p className="text-muted-foreground text-xs">
-                  {release.tag} · {formatDate(release.publishedAt)} ·{' '}
-                  {formatNumber(release.downloads)} Gesamt-Downloads
+                  {release.tag} · {formatDate(release.publishedAt)} · Changelog
+                  available
                 </p>
               ) : (
                 <p className="text-muted-foreground text-xs">
@@ -527,11 +527,9 @@ const Story = () => {
           </p>
           <p className="text-muted-foreground">
             For editing and NAS archiving, I need a repeatable flow: timestamp
-            in, filename out, done. No UI stalls, no hidden decisions.
-          </p>
-          <p className="text-muted-foreground">
-            Today, the toolkit delivers deterministic, fast, and transparent
-            renaming with a professional desktop experience.
+            in, filename out, done. No UI stalls, no hidden decisions. Today,
+            the toolkit delivers deterministic, fast, and transparent renaming
+            with a professional desktop experience.
           </p>
         </div>
         <div className="grid gap-4">
@@ -715,17 +713,17 @@ const Screenshots = () => {
   const shots = [
     {
       title: 'Main interface and live preview',
-      desc: 'Compare old and new names with real time diagnostics.',
+      desc: 'Compare old and new names with diagnostics at a glance.',
       image: '/images/date-renamer.png',
     },
     {
       title: 'Advanced options',
-      desc: 'ExifTool mode, Deep Mode flags, and parallel scan.',
+      desc: 'ExifTool mode, Deep Mode flags, and parallel scan together.',
       image: '/images/date-renamer.png',
     },
     {
       title: 'Tooltip transparency',
-      desc: 'See exactly why each timestamp was chosen.',
+      desc: 'See why each timestamp wins and stays consistent.',
       image: '/images/date-renamer.png',
     },
   ];
@@ -834,11 +832,10 @@ const DownloadSection = () => {
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2">
           {[
             { label: 'Windows (.exe)', href: DOWNLOAD_LATEST_URL },
             { label: 'macOS (.app)', href: DOWNLOAD_LATEST_URL },
-            { label: 'Linux', href: DOWNLOAD_LATEST_URL },
           ].map((item) => (
             <motion.a
               key={item.label}
