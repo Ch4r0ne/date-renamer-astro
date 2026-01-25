@@ -1,10 +1,9 @@
-# ARK ASA Server Manager Website
-Landingpage für den **ARK Ascended Server Manager** auf Windows.  
+# Date Renamer Website
+Landingpage für den **Date Renamer**
 
 ## Highlights
 
 - **Startseite** mit klaren Value-Statements und Story-Bereich.
-- **Live GitHub Stats & Release-Daten** (Stars, Forks, Issues, Gesamt-Downloads).
 - **Modernes Astro + React Setup** mit Tailwind CSS und Framer Motion.
 
 ## Tech Stack
