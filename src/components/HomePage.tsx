@@ -237,10 +237,10 @@ const Hero = ({ github }: { github: GithubStats }) => {
           transition={{ duration: 0.6 }}
         >
           <span className="font-hand text-primary mb-4 inline-block -rotate-2 text-2xl">
-            Deterministic media renaming for real-world archives
+            Deterministic media renaming for professional archives
           </span>
           <h1 className="font-heading text-foreground mb-6 text-5xl leading-[1.1] font-bold md:text-7xl">
-            Rename media by the{' '}
+            Rename media with the{' '}
             <span className="text-primary relative inline-block">
               timestamp you can trust
               <svg
@@ -258,10 +258,10 @@ const Hero = ({ github }: { github: GithubStats }) => {
             </span>
           </h1>
           <p className="text-muted-foreground max-w-xl text-lg leading-relaxed md:text-xl">
-            Date Renamer Toolkit renames photos and videos by the best available
-            capture timestamp — with transparent source diagnostics and a live
-            rename preview. Built for real-world media libraries, editing
-            workflows, and NAS archives.
+            Date Renamer Toolkit aligns photos and videos to the most reliable
+            capture time, with clear source diagnostics and a live rename
+            preview. It is built for media libraries, professional editing
+            workflows, and long term archive stability.
           </p>
 
           <div className="flex flex-wrap gap-4 pt-4">
@@ -299,7 +299,7 @@ const Hero = ({ github }: { github: GithubStats }) => {
               },
               {
                 icon: Zap,
-                label: 'ExifTool-first',
+                label: 'ExifTool first',
                 color: 'text-blue-600',
               },
               {
@@ -453,25 +453,25 @@ const Features = () => {
             Built for deterministic archives
           </span>
           <h2 className="font-heading text-foreground text-4xl font-bold md:text-5xl">
-            Features that explain every rename
+            Features that explain every rename decision
           </h2>
           <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-            No magic. Every file shows you exactly where its timestamp comes
-            from.
+            Every file shows exactly where its timestamp comes from, so every
+            rename is auditable.
           </p>
         </div>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           <FeatureCard
             title="Live Preview"
-            desc="Shows old/new filenames with tooltip diagnostics before you touch the filesystem."
+            desc="Review old and new filenames with diagnostics before any change is applied."
             icon={<LayoutDashboard className="text-primary h-8 w-8" />}
             delay={0.1}
             testId="card-feature-preview"
           />
           <FeatureCard
-            title="ExifTool-first"
-            desc="Batch scanning on Windows with transparent source priority."
+            title="ExifTool first"
+            desc="Batch scanning uses ExifTool priority with transparent sources."
             icon={<Zap className="text-primary h-8 w-8" />}
             delay={0.2}
             testId="card-feature-exiftool"
@@ -485,21 +485,21 @@ const Features = () => {
           />
           <FeatureCard
             title="Safe rename"
-            desc="Collision-proof unique naming so every rename is predictable."
+            desc="Collision safe naming so every rename remains predictable."
             icon={<ShieldCheck className="text-primary h-8 w-8" />}
             delay={0.4}
             testId="card-feature-safe"
           />
           <FeatureCard
             title="Parallel scan"
-            desc="Built for large folders and NAS archives without UI hangs."
+            desc="Designed for large folders and NAS archives without UI stalls."
             icon={<Server className="text-primary h-8 w-8" />}
             delay={0.5}
             testId="card-feature-parallel"
           />
           <FeatureCard
             title="Undo last run"
-            desc="Undo the last rename session to recover quickly if needed."
+            desc="Undo the last rename session to recover fast when needed."
             icon={<RotateCcw className="text-primary h-8 w-8" />}
             delay={0.6}
             testId="card-feature-undo"
@@ -515,42 +515,41 @@ const Story = () => {
     <section id="story" className="relative px-6 py-24 md:px-12 lg:px-24">
       <div className="mx-auto grid max-w-6xl gap-10 rounded-[2.5rem] bg-white/70 p-10 shadow-lg md:grid-cols-[1.1fr_0.9fr]">
         <div className="space-y-5">
-          <span className="font-hand text-primary text-xl">Why I built it</span>
+          <span className="font-hand text-primary text-xl">Why this exists</span>
           <h2 className="font-heading text-foreground text-4xl font-bold md:text-5xl">
-            The renamer I needed for my own archive
+            The renamer I needed for a reliable archive
           </h2>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            I built Date Renamer Toolkit because, after years of media chaos
-            (camera, smartphone, DJI, messenger exports, Google Takeout), I
-            couldn&apos;t find a Windows app that reliably sorted photos and videos by
-            the real capture time — without guessing.
+            Date Renamer Toolkit exists because years of mixed media sources
+            made reliable ordering nearly impossible. I needed a Windows app
+            that sorted photos and videos by the actual capture time, with no
+            guessing and no silent assumptions.
           </p>
           <p className="text-muted-foreground">
-            For editing and NAS archiving, I need an order that always works:
-            timestamp in → filename out → done. No UI hangs, no “somehow”
-            sorting, no hidden decisions.
+            For editing and NAS archiving, I need a repeatable flow: timestamp
+            in, filename out, done. No UI stalls, no hidden decisions.
           </p>
           <p className="text-muted-foreground">
-            Today, Date Renamer Toolkit is the app I wanted: deterministic,
-            fast, transparent, and built like a real desktop product.
+            Today, the toolkit delivers deterministic, fast, and transparent
+            renaming with a professional desktop experience.
           </p>
         </div>
         <div className="grid gap-4">
           {[
             {
-              title: 'The real problem',
+              title: 'The core problem',
               detail:
-                'If you want to cut, archive, or find media later, you must trust the result.',
+                'To edit, archive, or retrieve media later, the results must be trustworthy.',
             },
             {
-              title: 'What broke other tools',
+              title: 'Where other tools failed',
               detail:
-                'Videos behave differently than JPEGs, exports strip metadata, and Takeout needs sidecars.',
+                'Videos differ from JPEGs, exports remove metadata, and Takeout needs sidecars.',
             },
             {
-              title: 'What this tool does',
+              title: 'What this tool delivers',
               detail:
-                'Finds the best timestamp, shows its source, resolves collisions, and previews every rename.',
+                'Finds the best timestamp, shows the source, resolves collisions, and previews every rename.',
             },
           ].map((item) => (
             <div
@@ -583,27 +582,27 @@ const ProblemSolution = () => {
         <div className="mb-12 text-center">
           <span className="font-hand text-primary text-xl">Problem → Solution</span>
           <h3 className="font-heading text-foreground mt-3 text-3xl font-bold md:text-4xl">
-            Real-world media problems need deterministic answers
+            Professional archives need deterministic answers
           </h3>
         </div>
         <div className="grid gap-6 rounded-[2rem] bg-white/80 p-8 shadow-lg md:grid-cols-3">
           {[
             {
-              title: 'Messengers strip metadata',
+              title: 'Messaging exports strip metadata',
               detail:
-                '“No timestamp” becomes predictable with skip, fallback, or Deep Mode patterns.',
+                'Missing timestamps become predictable through skip, fallback, or Deep Mode patterns.',
               icon: <Image className="text-primary h-6 w-6" />,
             },
             {
               title: 'Video timestamps are inconsistent',
               detail:
-                'ExifTool + MediaInfo precedence keeps QuickTime/MP4/MOV in order.',
+                'ExifTool and MediaInfo precedence keeps QuickTime, MP4, and MOV consistent.',
               icon: <Video className="text-primary h-6 w-6" />,
             },
             {
               title: 'NAS archives demand stability',
               detail:
-                'Deterministic renames with collision-safe naming stay repeatable.',
+                'Deterministic renames with collision safe naming stay repeatable.',
               icon: <Archive className="text-primary h-6 w-6" />,
             },
           ].map((item) => (
@@ -628,24 +627,24 @@ const HowItWorks = () => {
     {
       step: 'Step 1',
       title: 'Scan folder',
-      detail: 'Select a folder and batch scan every file.',
+      detail: 'Select a folder and batch scan all media files.',
       icon: <Server className="text-primary h-7 w-7" />,
     },
     {
       step: 'Step 2',
       title: 'Resolve timestamp',
-      detail: 'Uses ExifTool first with source visibility.',
+      detail: 'Uses ExifTool first with clear source visibility.',
       icon: <Info className="text-primary h-7 w-7" />,
     },
     {
       step: 'Step 3',
       title: 'Preview rename plan',
-      detail: 'Live preview shows old/new names and diagnostics.',
+      detail: 'Live preview shows old and new names with diagnostics.',
       icon: <LayoutDashboard className="text-primary h-7 w-7" />,
     },
     {
       step: 'Step 4',
-      title: 'Rename + Undo',
+      title: 'Rename and undo',
       detail: 'Apply deterministic renames and undo the last run.',
       icon: <RotateCcw className="text-primary h-7 w-7" />,
     },
@@ -715,8 +714,8 @@ const HowItWorks = () => {
 const Screenshots = () => {
   const shots = [
     {
-      title: 'Main UI · Live preview',
-      desc: 'Compare old vs new names with real-time diagnostics.',
+      title: 'Main interface and live preview',
+      desc: 'Compare old and new names with real time diagnostics.',
       image: '/images/date-renamer.png',
     },
     {
@@ -726,7 +725,7 @@ const Screenshots = () => {
     },
     {
       title: 'Tooltip transparency',
-      desc: 'See exactly why a timestamp was chosen.',
+      desc: 'See exactly why each timestamp was chosen.',
       image: '/images/date-renamer.png',
     },
   ];
@@ -773,7 +772,7 @@ const UseCases = () => {
         <div className="mb-12 space-y-4 text-center">
           <span className="font-hand text-primary text-xl">Use cases</span>
           <h2 className="font-heading text-foreground text-4xl font-bold md:text-5xl">
-            Built for the workflows that break other tools
+            Built for workflows that demand accuracy
           </h2>
         </div>
 
@@ -781,11 +780,11 @@ const UseCases = () => {
           {[
             {
               title: 'Video editing prep',
-              detail: 'Rename footage once, then import cleanly into your NLE.',
+              detail: 'Rename footage once, then import cleanly into your editor.',
               icon: <Video className="text-primary h-6 w-6" />,
             },
             {
-              title: 'NAS / archive',
+              title: 'NAS archive',
               detail: 'Keep consistent structure across devices and exports.',
               icon: <Archive className="text-primary h-6 w-6" />,
             },
@@ -795,7 +794,7 @@ const UseCases = () => {
               icon: <Info className="text-primary h-6 w-6" />,
             },
             {
-              title: 'DJI & action cams',
+              title: 'DJI and action cams',
               detail: 'Filename timestamps are parsed in Deep Mode.',
               icon: <Image className="text-primary h-6 w-6" />,
             },

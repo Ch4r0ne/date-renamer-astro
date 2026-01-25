@@ -3,21 +3,19 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Mail, Heart } from 'lucide-react';
 
 export default function Contact() {
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (name && email && message) {
+    if (email && message) {
       const messages = JSON.parse(
         localStorage.getItem('contactMessages') || '[]',
       );
-      messages.push({ name, email, message, date: new Date().toISOString() });
+      messages.push({ email, message, date: new Date().toISOString() });
       localStorage.setItem('contactMessages', JSON.stringify(messages));
       setSubmitted(true);
-      setName('');
       setEmail('');
       setMessage('');
     }
@@ -50,10 +48,10 @@ export default function Contact() {
           <div className="space-y-4 text-center">
             <Mail className="text-primary mx-auto h-12 w-12" />
             <h1 className="font-heading text-foreground text-4xl font-bold md:text-5xl">
-              Get in Touch
+              Contact the team
             </h1>
             <p className="text-muted-foreground text-lg">
-              Have questions or feedback? We'd love to hear from you!
+              Send a short message and we will respond with clear next steps.
             </p>
           </div>
 
@@ -63,25 +61,11 @@ export default function Contact() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-2">
                     <label className="text-foreground text-sm font-bold">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Your name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      data-testid="input-contact-name"
-                      className="border-border bg-background focus:border-primary w-full rounded-lg border-2 px-4 py-3 transition-colors focus:outline-none"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="text-foreground text-sm font-bold">
-                      Email
+                      Work email
                     </label>
                     <input
                       type="email"
-                      placeholder="your@email.com"
+                      placeholder="name@company.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       data-testid="input-contact-email"
@@ -94,7 +78,7 @@ export default function Contact() {
                       Message
                     </label>
                     <textarea
-                      placeholder="Your message..."
+                      placeholder="Share your use case and the outcome you need."
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       data-testid="textarea-contact-message"
@@ -112,7 +96,7 @@ export default function Contact() {
                       type="submit"
                       className="bg-primary text-primary-foreground hover:bg-primary/90 w-full rounded-lg py-3 font-bold"
                     >
-                      Send Message
+                      Send request
                     </button>
                   </motion.div>
                 </form>
@@ -126,11 +110,11 @@ export default function Contact() {
                     <Heart className="h-8 w-8 fill-current text-green-600" />
                   </div>
                   <h2 className="font-heading text-foreground text-2xl font-bold">
-                    Thank you!
+                    Message received
                   </h2>
                   <p className="text-muted-foreground">
-                    We received your message and will get back to you soon. Stay
-                    zen! 🐱
+                    We are reviewing your message and will respond shortly with
+                    the next steps.
                   </p>
                   <motion.div
                     whileHover={{ scale: 1.05 }}
