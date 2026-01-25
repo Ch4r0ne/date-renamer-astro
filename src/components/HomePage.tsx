@@ -239,7 +239,7 @@ const Hero = () => {
           <p className="text-muted-foreground max-w-xl text-lg leading-relaxed md:text-xl">
             Date Renamer Toolkit aligns media to the most reliable capture time
             with clear diagnostics and a live rename preview. Built for
-            professional libraries and long term archive stability.
+            professional libraries and long-term archive stability.
           </p>
 
           <div className="flex flex-wrap gap-4 pt-4">
@@ -540,13 +540,13 @@ const ProblemSolution = () => {
         <div className="mb-12 text-center">
           <span className="font-hand text-primary text-xl">Problem → Solution</span>
           <h3 className="font-heading text-foreground mt-3 text-3xl font-bold md:text-4xl">
-            Deterministic evidence for enterprise archives
+            Audit-ready evidence for enterprise archives
           </h3>
         </div>
-        <div className="grid gap-6 rounded-[2rem] bg-white/80 p-8 shadow-lg md:grid-cols-3">
+        <div className="grid gap-5 rounded-[2rem] bg-white/80 p-6 shadow-lg sm:gap-6 md:grid-cols-3 md:p-8">
           {[
             {
-              title: 'Exports lose traceable metadata',
+              title: 'Exports often strip traceable metadata',
               detail:
                 'Fallback rules and Deep Mode rebuild accountable timelines.',
               icon: <Image className="text-primary h-6 w-6" />,
@@ -560,11 +560,14 @@ const ProblemSolution = () => {
             {
               title: 'NAS archives need audit-safe stability',
               detail:
-                'Collision-safe naming keeps runs reproducible.',
+                'Collision-safe naming keeps runs reproducible and compliant.',
               icon: <Archive className="text-primary h-6 w-6" />,
             },
           ].map((item) => (
-            <div key={item.title} className="flex items-start gap-3">
+            <div
+              key={item.title}
+              className="bg-card/70 border-border/40 flex items-start gap-4 rounded-2xl border p-5"
+            >
               <div className="bg-primary/10 mt-1 rounded-full p-2">
                 {item.icon}
               </div>
