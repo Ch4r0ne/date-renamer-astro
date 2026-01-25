@@ -6,10 +6,14 @@ interface Props {
 }
 
 const {
-  title = 'ARK ASA Server Manager for Windows | Dedicated Server Manager',
-  description = 'ARK ASA Server Manager for Windows ARK: Survival Ascended (ASA) dedicated servers',
+  title = 'Date Renamer Toolkit | Deterministic Media Renaming',
+  description = 'Rename photos and videos by trusted capture timestamps with transparent diagnostics and live previews.',
   noindex = false,
 } = Astro.props;
+
+const canonicalUrl = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).toString()
+  : Astro.url.toString();
 
 /**
  * Local fonts (DSGVO-safe, no Google requests)
@@ -29,6 +33,7 @@ import '@fontsource/patrick-hand/latin-ext-400.css';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#E8A598" />
+    <link rel="canonical" href={canonicalUrl} />
 
     {noindex ? (
       <meta name="robots" content="noindex, nofollow, noarchive" />
@@ -45,6 +50,14 @@ import '@fontsource/patrick-hand/latin-ext-400.css';
 
     <title>{title}</title>
 
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
     <!-- Google Fonts removed (privacy + render-blocking fix) -->
 
     <script
@@ -52,11 +65,12 @@ import '@fontsource/patrick-hand/latin-ext-400.css';
       set:html={JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'SoftwareApplication',
-        name: 'ARK ASA Server Manager',
+        name: 'Date Renamer Toolkit',
         description:
-          'ARK ASA Server Manager for Windows to manage ARK: Survival Ascended (ASA) dedicated servers.',
-        applicationCategory: 'GameServerApplication',
-        operatingSystem: 'Windows',
+          'Deterministic media renaming with trusted capture timestamps, diagnostics, and previewed rename plans.',
+        applicationCategory: 'MultimediaApplication',
+        operatingSystem: 'Windows, macOS, Linux',
+        url: canonicalUrl,
         offers: {
           '@type': 'Offer',
           price: '0',
