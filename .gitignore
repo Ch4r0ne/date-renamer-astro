@@ -1,0 +1,5 @@
+dist
+.DS_Store
+*.tar.gz
+.astro
+node_modules
