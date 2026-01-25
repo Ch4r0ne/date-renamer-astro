@@ -322,11 +322,11 @@ const Hero = () => {
           />
 
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-            whileHover={{ y: -4 }}
-            className="bg-card absolute -bottom-8 -left-4 flex max-w-[220px] items-center gap-3 rounded-2xl p-4 shadow-lg md:left-10"
+            transition={{ duration: 0.5, ease: 'easeOut', delay: 0.1 }}
+            whileHover={{ y: 4 }}
+            className="bg-card absolute -top-8 -right-4 flex max-w-[220px] items-center gap-3 rounded-2xl p-4 shadow-lg md:-top-6 md:-right-8"
           >
             <div className="rounded-full bg-green-100 p-2 text-green-600">
               <ShieldCheck size={20} />
@@ -335,24 +335,6 @@ const Hero = () => {
               <p className="text-sm font-bold">Audit-ready</p>
               <p className="text-muted-foreground text-xs">
                 Deterministic logs and verifiable rename trails.
-              </p>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: 'easeOut', delay: 0.1 }}
-            whileHover={{ y: 4 }}
-            className="bg-card absolute -top-4 -right-4 flex max-w-[220px] items-center gap-3 rounded-2xl p-4 shadow-lg md:-right-8"
-          >
-            <div className="rounded-full bg-blue-100 p-2 text-blue-600">
-              <Info size={20} />
-            </div>
-            <div>
-              <p className="text-sm font-bold">Enterprise-grade</p>
-              <p className="text-muted-foreground text-xs">
-                Verified releases with documented change logs.
               </p>
             </div>
           </motion.div>
@@ -520,65 +502,6 @@ const Story = () => {
           ))}
         </div>
       </div>
-    </section>
-  );
-};
-
-const ProblemSolution = () => {
-  return (
-    <section
-      id="problem"
-      className="bg-secondary/20 flex items-center justify-center px-6 py-24"
-    >
-      <motion.div
-        className="relative mx-auto max-w-6xl"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="mb-12 text-center">
-          <span className="font-hand text-primary text-xl">Problem → Solution</span>
-          <h3 className="font-heading text-foreground mt-3 text-3xl font-bold md:text-4xl">
-            Audit-ready evidence for enterprise archives
-          </h3>
-        </div>
-        <div className="grid gap-5 rounded-[2rem] bg-white/80 p-6 shadow-lg sm:gap-6 md:grid-cols-3 md:p-8">
-          {[
-            {
-              title: 'Exports often strip traceable metadata',
-              detail:
-                'Fallback rules and Deep Mode rebuild accountable timelines.',
-              icon: <Image className="text-primary h-6 w-6" />,
-            },
-            {
-              title: 'Video timestamps drift',
-              detail:
-                'Precedence rules align QuickTime, MP4, and MOV sources.',
-              icon: <Video className="text-primary h-6 w-6" />,
-            },
-            {
-              title: 'NAS archives need audit-safe stability',
-              detail:
-                'Collision-safe naming keeps runs reproducible and compliant.',
-              icon: <Archive className="text-primary h-6 w-6" />,
-            },
-          ].map((item) => (
-            <div
-              key={item.title}
-              className="bg-card/70 border-border/40 flex items-start gap-4 rounded-2xl border p-5"
-            >
-              <div className="bg-primary/10 mt-1 rounded-full p-2">
-                {item.icon}
-              </div>
-              <div>
-                <p className="text-foreground font-semibold">{item.title}</p>
-                <p className="text-muted-foreground text-sm">{item.detail}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </motion.div>
     </section>
   );
 };
@@ -991,7 +914,6 @@ export default function HomePage() {
       <Navigation />
       <Hero />
       <Story />
-      <ProblemSolution />
       <HowItWorks />
       <Features />
       <UseCases />
