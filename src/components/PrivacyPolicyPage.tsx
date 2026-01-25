@@ -57,10 +57,10 @@ export default function PrivacyPolicyPage() {
                   2. Hosting über GitHub Pages &amp; Server-Logfiles
                 </h2>
                 <p className="text-muted-foreground">
-                  Diese Website wird über GitHub Pages bereitgestellt (GitHub). Beim Besuch einer
-                  GitHub-Pages-Website wird die IP-Adresse der Besucherinnen und Besucher geloggt
-                  und zu Sicherheitszwecken gespeichert. Weitere Informationen findest du in der
-                  {' '}
+                  Diese Website wird über GitHub Pages bereitgestellt (GitHub). Beim Aufruf der
+                  Seiten werden technisch bedingt Server-Logfiles verarbeitet (z. B. IP-Adresse,
+                  Datum und Uhrzeit des Zugriffs, aufgerufene Ressource, User-Agent, Referrer-URL).
+                  Weitere Informationen findest du in der{' '}
                   <a
                     href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
                     className="text-primary underline"
@@ -78,6 +78,8 @@ export default function PrivacyPolicyPage() {
                   Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am sicheren
                   Betrieb).
                   <br />
+                  Empfänger: GitHub, Inc. als Hosting-Anbieter.
+                  <br />
                   Hinweis Drittland: GitHub verarbeitet Daten auch in den USA; GitHub gibt an, nach
                   dem EU-U.S. Data Privacy Framework (DPF) zertifiziert zu sein.
                 </p>
@@ -88,10 +90,12 @@ export default function PrivacyPolicyPage() {
                 <p className="text-muted-foreground">
                   Wenn du mich per E-Mail kontaktierst, verarbeite ich deine Angaben
                   (E-Mail-Adresse, Inhalt der Nachricht) ausschließlich zur Bearbeitung der Anfrage.
+                  Die Bereitstellung der Daten ist nicht gesetzlich oder vertraglich erforderlich,
+                  ohne diese Angaben kann die Anfrage jedoch nicht bearbeitet werden.
                 </p>
                 <p className="text-muted-foreground">
-                  Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Anfrage/Kommunikation) oder Art. 6
-                  Abs. 1 lit. f DSGVO.
+                  Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Kommunikation) oder
+                  Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an effizienter Kommunikation).
                 </p>
               </section>
 
@@ -145,11 +149,31 @@ export default function PrivacyPolicyPage() {
               </section>
 
               <section className="space-y-3">
+                <h2 className="font-heading text-foreground text-xl font-bold">8. Speicherdauer</h2>
+                <p className="text-muted-foreground">
+                  Server-Logfiles werden nur so lange gespeichert, wie es für Betrieb, Sicherheit
+                  und Fehleranalyse erforderlich ist. Anfragen per E-Mail speichere ich solange,
+                  wie es zur Bearbeitung erforderlich ist oder gesetzliche Aufbewahrungspflichten
+                  bestehen.
+                </p>
+              </section>
+
+              <section className="space-y-3">
                 <h2 className="font-heading text-foreground text-xl font-bold">9. Datensicherheit</h2>
                 <p className="text-muted-foreground">
                   Die Übertragung erfolgt verschlüsselt (HTTPS/TLS). Zusätzlich setze ich
                   angemessene technische und organisatorische Maßnahmen zur Absicherung der Website
                   ein.
+                </p>
+              </section>
+
+              <section className="space-y-3">
+                <h2 className="font-heading text-foreground text-xl font-bold">
+                  10. Keine automatisierte Entscheidungsfindung
+                </h2>
+                <p className="text-muted-foreground">
+                  Eine automatisierte Entscheidungsfindung einschließlich Profiling findet nicht
+                  statt.
                 </p>
               </section>
 
