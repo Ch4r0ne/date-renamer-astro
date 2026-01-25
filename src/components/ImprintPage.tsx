@@ -83,7 +83,7 @@ export default function ImprintPage() {
               </section>
 
               <div className="border-border/40 text-muted-foreground border-t pt-4 text-sm">
-                Stand: 20.01.2026
+                Stand: 20.01.2025
               </div>
             </div>
           </div>

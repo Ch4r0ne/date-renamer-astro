@@ -60,7 +60,16 @@ export default function PrivacyPolicyPage() {
                   Diese Website wird über GitHub Pages bereitgestellt (GitHub). Beim Besuch einer
                   GitHub-Pages-Website wird die IP-Adresse der Besucherinnen und Besucher geloggt
                   und zu Sicherheitszwecken gespeichert. Weitere Informationen findest du in der
-                  GitHub Privacy Statement.
+                  {' '}
+                  <a
+                    href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
+                    className="text-primary underline"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    GitHub Privacy Statement
+                  </a>
+                  .
                 </p>
                 <p className="text-muted-foreground">
                   Zweck: Betrieb, Auslieferung, Stabilität, Fehleranalyse sowie Schutz vor
@@ -163,7 +172,7 @@ export default function PrivacyPolicyPage() {
               </section>
 
               <div className="border-border/40 text-muted-foreground border-t pt-4 text-sm">
-                Stand: 20.01.2026
+                Stand: 20.01.2025
               </div>
             </div>
           </div>
