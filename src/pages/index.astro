@@ -1,14 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import HomePage from '../components/HomePage';
-import { getGithubStats } from '../lib/github';
-
-const github = await getGithubStats();
 ---
 
 <Layout
   title="Date Renamer Toolkit | Deterministic Media Renaming"
   description="Rename photos and videos by trusted capture timestamps with transparent diagnostics and live previews."
 >
-  <HomePage github={github} client:load />
+  <HomePage client:load />
 </Layout>
