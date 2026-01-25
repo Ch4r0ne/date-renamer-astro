@@ -856,6 +856,20 @@ export const Footer = () => {
                 >
                   License
                 </a>
+                <a
+                  href="/imprint"
+                  className="text-muted-foreground hover:text-primary w-fit text-sm transition-colors"
+                  data-testid="link-imprint-footer"
+                >
+                  Imprint (Impressum)
+                </a>
+                <a
+                  href="/privacy"
+                  className="text-muted-foreground hover:text-primary w-fit text-sm transition-colors"
+                  data-testid="link-privacy-footer"
+                >
+                  Privacy Policy (Datenschutzerklärung)
+                </a>
               </div>
             </div>
           </motion.div>
