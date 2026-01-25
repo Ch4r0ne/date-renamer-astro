@@ -541,27 +541,27 @@ const ProblemSolution = () => {
         <div className="mb-12 text-center">
           <span className="font-hand text-primary text-xl">Problem → Solution</span>
           <h3 className="font-heading text-foreground mt-3 text-3xl font-bold md:text-4xl">
-            Professional archives need deterministic answers
+            Enterprise archives demand deterministic evidence
           </h3>
         </div>
         <div className="grid gap-6 rounded-[2rem] bg-white/80 p-8 shadow-lg md:grid-cols-3">
           {[
             {
-              title: 'Messaging exports strip metadata',
+              title: 'Messaging exports lose traceable metadata',
               detail:
-                'Missing timestamps become predictable through skip, fallback, or Deep Mode patterns.',
+                'Policy-based fallbacks and Deep Mode reconstruction restore accountable timelines.',
               icon: <Image className="text-primary h-6 w-6" />,
             },
             {
-              title: 'Video timestamps are inconsistent',
+              title: 'Video timestamps drift across sources',
               detail:
-                'ExifTool and MediaInfo precedence keeps QuickTime, MP4, and MOV consistent.',
+                'Clear precedence rules align QuickTime, MP4, and MOV to one verified source.',
               icon: <Video className="text-primary h-6 w-6" />,
             },
             {
-              title: 'NAS archives demand stability',
+              title: 'NAS archives require audit-safe stability',
               detail:
-                'Deterministic renames with collision safe naming stay repeatable.',
+                'Collision-safe, deterministic naming keeps every run reproducible.',
               icon: <Archive className="text-primary h-6 w-6" />,
             },
           ].map((item) => (
