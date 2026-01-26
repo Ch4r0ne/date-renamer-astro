@@ -39,7 +39,7 @@
     "@fontsource-variable/nunito": "^5.2.7",
     "@fontsource/inter": "^5.2.8",
     "@fontsource/patrick-hand": "^5.2.8",
-    "astro": "^5.16.11",
+    "astro": "^5.16.15",
     "clsx": "^2.1.1",
     "framer-motion": "^12.27.5",
     "lucide-react": "^0.562.0",
