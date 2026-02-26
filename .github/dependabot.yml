@@ -18,9 +18,6 @@ updates:
     labels:
       - "dependencies"
 
-    assignees:
-      - "Ch4r0ne"
-
     commit-message:
       prefix: "chore"
       include: "scope"
@@ -80,9 +77,6 @@ updates:
 
     labels:
       - "dependencies"
-
-    assignees:
-      - "Ch4r0ne"
 
     commit-message:
       prefix: "chore"
